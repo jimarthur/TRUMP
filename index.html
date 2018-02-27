@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+<META NAME="viewport" content="width=device-width, inital-scale=1.0">
+    <title>Angry Trump</title>
+    <link rel="stylesheet" href="/style.css" type="text/css" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 40px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+
+  </head>
+  <body>
+
+    <main class="main-content">
+      <header class "main-header">
+        <h1 class="logo-text">BLOW HARD</h1>
+      </header>
+      <div class="image-holder">
+        <img id="trump" src="images/1.jpg" alt="Angry Trump">
+      </div>
+    <div class="button-container">
+    <button id="blue" class="but1" type="button">BLOW</button>
+    <button id="red" class="but2" type="button">SUCK</button>
+  </div>
+  </main>
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+
+        $('#blue').click(function(){
+          socket.emit('blue', '1');
+          return false;
+        });
+        $('#red').click(function(){
+          socket.emit('red', '1');
+          return false;
+        });
+
+
+        socket.on('message', function(msg){
+          console.log(msg);
+        });
+        socket.on('score', function(msg){
+          if(msg==0){
+          document.getElementById('trump').src='images/1.jpg';
+          }
+          if(msg==10){
+          document.getElementById('trump').src='images/2.jpg';
+          }
+          if(msg==20){
+          document.getElementById('trump').src='images/3.jpg';
+          }
+          if(msg==30){
+          document.getElementById('trump').src='images/4.jpg';
+          }
+          if(msg==40){
+          document.getElementById('trump').src='images/5.jpg';
+          }
+          if(msg==50){
+          document.getElementById('trump').src='images/6.jpg';  
+          }
+        });
+      });
+    </script>
+      </body>
+</html>

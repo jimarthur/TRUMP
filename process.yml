@@ -1,5 +1,5 @@
 apps:
-  - script: ./bin/www
+  - script: node index.js
     watch: true
     instances: 4
     exec_mode: cluster
